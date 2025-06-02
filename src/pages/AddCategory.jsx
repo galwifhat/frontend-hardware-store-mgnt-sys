@@ -33,27 +33,30 @@ const AddCategory = () => {
   };
 
   return (
-    <div>
-      <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
+    <div className="px-4 sm:px-6 md:px-12 py-10 bg-[#333446]">
+      <form
+        className="p-6 rounded-xl shadow-lg flex flex-col gap-6 max-w-xl mx-auto bg-[#B8CFCE]"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div>
           <input
-            className={
+            className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border ${
               errors?.category_name?.message
-                ? "border border-red-500"
-                : "border"
-            }
+                ? "border-red-500"
+                : "border-[#EAEFEF]"
+            } `}
             type="text"
             placeholder="Category name"
             {...register("category_name")}
           />
           {errors?.category_name?.message && (
-            <span className="text-xs text-red-500">
+            <p className="text-xs text-red-500 mt-1">
               {errors.category_name.message}
-            </span>
+            </p>
           )}
         </div>
         <button
-          className="bg-[#48cae4] rounded-lg hover:cursor-pointer"
+          className="text-white font-semibold py-2 rounded transition-colors bg-[#7F8CAA]"
           type="submit"
         >
           Submit

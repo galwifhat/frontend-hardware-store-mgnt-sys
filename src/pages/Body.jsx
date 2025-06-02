@@ -1,8 +1,6 @@
-import Header from "./Header";
-import Footer from "./Footer";
+import { useState, useEffect } from "react";
 
-const Mainpage = () => {
-
+const Body = () => {
   const [products, setProducts] = useState([]);
 
   const [brands, setBrands] = useState([]);
@@ -61,8 +59,7 @@ const Mainpage = () => {
 
   return (
     <>
-      <div className="min-h-screen px-4 sm:px-6 md:px-8 lg:px-16 xl:px-24 py-8">
-        <Header />
+      <div className="px-4 sm:px-6 md:px-8 lg:px-16 xl:px-24 py-8">
         <div className="flex">
           <select
             value={selectedBrandId}
@@ -96,36 +93,40 @@ const Mainpage = () => {
             {products.map((product) => (
               <div
                 key={product.id}
-                className="border rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                className="border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow"
               >
-                <img
-                  className="w-full h-48 object-contain"
-                  height={300}
-                  width={200}
-                  src={product.image_url}
-                  alt={product.product_name}
-                />
-                <h3 className="font-bold text-lg truncate">
-                  {product.product_name}
-                </h3>
-                <h3 className="text-gray-600">SKU: {product.sku}</h3>
-                <button className="font-bold text-lg text-red-500">
-                  Delete
-                </button>
-                <br />
-                <button className="font-bold text-lg text-green-500">
-                  Buy
-                </button>
+                <figure className="bg-white">
+                  <img
+                    className="w-full h-48 object-contain"
+                    height={300}
+                    width={200}
+                    src={product.image_url}
+                    alt={product.product_name}
+                    title={product.product_name}
+                  />
+                  <figcaption className="font-bold text-lg truncate pl-2">
+                    {product.product_name}
+                  </figcaption>
+                  <p className="text-gray-600 pl-2">SKU: {product.sku}</p>
+                  <div className="flex gap-4 justify-end pr-8 pb-2">
+                    <button className="w-[200px]  text-xl bg-[#B8CFCE] text-[#333446]  font-semibold py-2 rounded transition-colors hover:bg-red-500">
+                      Delete
+                    </button>
+                    <br />
+                    <button className="w-[200px]  text-xl bg-[#B8CFCE] text-[#333446]  font-semibold py-2 rounded transition-colors hover:bg-green-500">
+                      Buy
+                    </button>
+                  </div>
+                </figure>
               </div>
             ))}
           </div>
         ) : (
           <p>No products found.</p>
         )}
-        <Footer />
       </div>
     </>
   );
-}
+};
 
-export default Mainpage
+export default Body;

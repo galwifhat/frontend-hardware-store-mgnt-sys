@@ -4,18 +4,25 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
 
+import SetProducts from "./pages/SetProducts.jsx";
+import PurchaseTable from "./pages/PurchaseTable.jsx";
+
 const routes = createBrowserRouter([
   {
     path: "/home",
     element: <App />,
   },
   {
-    path: "/add-product",
-    element: <>Another page perharps?</>,
+    path: "/setproduct",
+    element: <SetProducts/>,
   },
   {
-    path: "/add-category",
-    element: <>Display all categories</>,
+    path: "/purchasetable",
+    element: <PurchaseTable/>,
+  },
+  {
+    path: "/billing",
+    element: <>No Billing Info Yet</>,
   },
 ]);
 
