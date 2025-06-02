@@ -17,7 +17,6 @@ const routes = createBrowserRouter([
     path: "/add-category",
     element: <>Display all categories</>,
   },
- 
 ]);
 
 createRoot(document.getElementById("root")).render(

@@ -5,7 +5,7 @@ import AddProducts from "./pages/AddProduct";
 import Footer from "./pages/Footer";
 import Header from "./pages/Header";
 
-function App() {
+function Appy() {
   const [products, setProducts] = useState([]);
 
   const [brands, setBrands] = useState([]);
@@ -135,4 +135,4 @@ function App() {
   );
 }
 
-export default App;
+export default Appy;

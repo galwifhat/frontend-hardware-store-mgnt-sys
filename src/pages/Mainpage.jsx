@@ -1,11 +1,8 @@
-import { useState, useEffect } from "react";
-import AddBrands from "./pages/AddBrand";
-import AddCategory from "./pages/AddCategory";
-import AddProducts from "./pages/AddProduct";
-import Footer from "./pages/Footer";
-import Header from "./pages/Header";
+import Header from "./Header";
+import Footer from "./Footer";
 
-function App() {
+const Mainpage = () => {
+
   const [products, setProducts] = useState([]);
 
   const [brands, setBrands] = useState([]);
@@ -66,10 +63,6 @@ function App() {
     <>
       <div className="min-h-screen px-4 sm:px-6 md:px-8 lg:px-16 xl:px-24 py-8">
         <Header />
-        <AddBrands />
-        <AddCategory />
-        <AddProducts />
-
         <div className="flex">
           <select
             value={selectedBrandId}
@@ -135,4 +128,4 @@ function App() {
   );
 }
 
-export default App;
+export default Mainpage
