@@ -47,6 +47,22 @@ const Body = () => {
       .catch((err) => console.error("Failed to laod products:", err));
   }, [selectedBrandId, selectedCategoryId]);
 
+  const handleDelete = (id) => {
+    let url = `${import.meta.env.VITE_API_URL}/productsdata/${id}`
+
+    fetch(url, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success(data.message);
+        setProducts((prevProducts) =>
+          prevProducts.filter((product) => product.id !== id)
+        );
+      });
+  };
+
   return (
     <>
       <div className="px-4 sm:px-6 md:px-8 lg:px-16 xl:px-24 py-8">
@@ -99,7 +115,10 @@ const Body = () => {
                   </figcaption>
                   <p className="text-gray-600 pl-2">SKU: {product.sku}</p>
                   <div className="flex gap-4 justify-end pr-8 pb-2">
-                    <button className="w-[200px]  text-xl bg-[#B8CFCE] text-[#333446]  font-semibold py-2 rounded transition-colors hover:bg-red-500">
+                    <button
+                      onClick={() => handleDelete(product.id)}
+                      className="w-[200px]  text-xl bg-[#B8CFCE] text-[#333446]  font-semibold py-2 rounded transition-colors hover:bg-red-500"
+                    >
                       Delete
                     </button>
                     <br />
