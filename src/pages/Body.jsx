@@ -11,7 +11,7 @@ const Body = () => {
 
   useEffect(() => {
     //on load -> branddata
-    fetch("http://localhost:8000/branddata")
+    fetch(`${import.meta.env.VITE_API_URL}/branddata`)
       .then((response) => response.json())
       .then((data) => {
         setBrands(data);
@@ -19,7 +19,7 @@ const Body = () => {
       .catch((err) => console.error("Failed to laod brands:", err));
 
     //on load -> categorydata
-    fetch("http://localhost:8000/categorydata")
+    fetch(`${import.meta.env.VITE_API_URL}/categorydata`)
       .then((response) => response.json())
       .then((data) => {
         setCategories(data);
@@ -29,7 +29,7 @@ const Body = () => {
 
   //fetch for products
   useEffect(() => {
-    let url = "http://localhost:8000/productsdata";
+    let url = `${import.meta.env.VITE_API_URL}/productsdata`;
 
     const params = new URLSearchParams();
     if (selectedBrandId) params.append("brand_id", selectedBrandId);

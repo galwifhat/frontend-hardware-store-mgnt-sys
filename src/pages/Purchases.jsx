@@ -16,7 +16,7 @@ const Purchases = () => {
 
   useEffect(() => {
     //on load -> purchases data
-    fetch("http://localhost:8000/purchasedata")
+    fetch(`${import.meta.env.VITE_API_URL}/purchasedata`)
       .then((response) => response.json())
       .then((data) => {
         setPurchases(data);

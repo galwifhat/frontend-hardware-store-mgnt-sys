@@ -21,13 +21,13 @@ const AddProducts = () => {
   const [brands, setBrands] = useState([]); //fetch brands
 
   useEffect(() => {
-    fetch("http://localhost:8000/categorydata") //get the endpoint of the fetched data
+    fetch(`${import.meta.env.VITE_API_URL}/categorydata`) //get the endpoint of the fetched data
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8000/branddata") //get the endpoint of the fetched data
+    fetch(`${import.meta.env.VITE_API_URL}/branddata`) //get the endpoint of the fetched data
       .then((res) => res.json())
       .then((data) => setBrands(data));
   }, []);
@@ -51,7 +51,7 @@ const AddProducts = () => {
 
   const onSubmit = (values) => {
     //run POST request to our backend
-    fetch("http://localhost:8000/newproducts", {
+    fetch(`${import.meta.env.VITE_API_URL}/newproducts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -68,7 +68,6 @@ const AddProducts = () => {
         // navigate('/');
       });
   };
-
 
   return (
     <div className="px-4 sm:px-6 md:px-12 py-10 bg-[#333446]">
@@ -97,9 +96,7 @@ const AddProducts = () => {
         <div>
           <input
             className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border ${
-              errors?.sku?.message
-                ? "border-red-500"
-                : "border-[#EAEFEF]"
+              errors?.sku?.message ? "border-red-500" : "border-[#EAEFEF]"
             } `}
             type="text"
             placeholder="SKU"
@@ -113,9 +110,7 @@ const AddProducts = () => {
         <div>
           <input
             className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border ${
-              errors?.image_url?.message
-                ? "border-red-500"
-                : "border-[#EAEFEF]"
+              errors?.image_url?.message ? "border-red-500" : "border-[#EAEFEF]"
             } `}
             type="text"
             placeholder="image_url"
@@ -132,9 +127,7 @@ const AddProducts = () => {
         <div>
           <select
             className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border ${
-              errors?.brand_id?.message
-                ? "border-red-500"
-                : "border-[#EAEFEF]"
+              errors?.brand_id?.message ? "border-red-500" : "border-[#EAEFEF]"
             } `}
             {...register("brand_id")}
           >

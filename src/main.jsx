@@ -6,7 +6,6 @@ import "./index.css";
 import App from "./App.jsx";
 import SetProducts from "./pages/SetProducts.jsx";
 import PurchaseTable from "./pages/PurchaseTable.jsx";
-import ProductSearch from "./pages/Fetching.jsx";
 
 const routes = createBrowserRouter([
   {
@@ -24,10 +23,6 @@ const routes = createBrowserRouter([
   {
     path: "/billing",
     element: <>No Billing Info Yet</>,
-  },
-  {
-    path: "/product-search",
-    element: <ProductSearch/>,
   },
 ]);
 
