@@ -2,6 +2,8 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const validationSchema = z.object({
   product_name: z.string().nonempty({ message: "Product name is required" }),
@@ -16,7 +18,7 @@ const validationSchema = z.object({
 
 const AddProducts = () => {
   const [categories, setCategories] = useState([]); //fetch categories
-  const [brands, setBrands] = useState([]); //fetch categories
+  const [brands, setBrands] = useState([]); //fetch brands
 
   useEffect(() => {
     fetch("http://localhost:8000/categorydata") //get the endpoint of the fetched data
@@ -56,12 +58,17 @@ const AddProducts = () => {
       },
       body: JSON.stringify(values),
     })
-      .then((res) => res.json())
+      .then((res) => res.json()) //convert from json formart to plain object (what js can understand)
       .then((data) => {
         // reset the form
         reset();
+        //UI feedback
+        toast.success(data.message);
+        // optionally we can redirect the user to the home page
+        // navigate('/');
       });
   };
+
 
   return (
     <div className="px-4 sm:px-6 md:px-12 py-10 bg-[#333446]">
@@ -73,7 +80,7 @@ const AddProducts = () => {
           <input
             className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border ${
               errors?.product_name?.message
-                ? "border border-red-500"
+                ? "border-red-500"
                 : "border-[#EAEFEF]"
             } `}
             type="text"
@@ -91,7 +98,7 @@ const AddProducts = () => {
           <input
             className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border ${
               errors?.sku?.message
-                ? "border border-red-500"
+                ? "border-red-500"
                 : "border-[#EAEFEF]"
             } `}
             type="text"
@@ -107,7 +114,7 @@ const AddProducts = () => {
           <input
             className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border ${
               errors?.image_url?.message
-                ? "border border-red-500"
+                ? "border-red-500"
                 : "border-[#EAEFEF]"
             } `}
             type="text"
@@ -126,7 +133,7 @@ const AddProducts = () => {
           <select
             className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border ${
               errors?.brand_id?.message
-                ? "border border-red-500"
+                ? "border-red-500"
                 : "border-[#EAEFEF]"
             } `}
             {...register("brand_id")}
@@ -149,7 +156,7 @@ const AddProducts = () => {
           <select
             className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border ${
               errors?.category_id?.message
-                ? "border border-red-500"
+                ? "border-red-500"
                 : "border-[#EAEFEF]"
             } `}
             {...register("category_id")}
@@ -172,7 +179,7 @@ const AddProducts = () => {
           <input
             className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border ${
               errors?.current_stock?.message
-                ? "border border-red-500"
+                ? "border-red-500"
                 : "border-[#EAEFEF]"
             } `}
             type="number"

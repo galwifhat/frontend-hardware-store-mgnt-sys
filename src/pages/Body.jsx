@@ -42,20 +42,10 @@ const Body = () => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setProducts(data);
+        setProducts(data.product);
       })
       .catch((err) => console.error("Failed to laod products:", err));
   }, [selectedBrandId, selectedCategoryId]);
-
-  // Get selected brand name
-  const selectedBrandName = brands.find(
-    (b) => b.id.toString() === selectedBrandId
-  )?.brand_name;
-
-  // Get selected category name
-  const selectedCategoryName = brands.find(
-    (b) => b.id.toString() === selectedBrandId
-  )?.brand_name;
 
   return (
     <>
