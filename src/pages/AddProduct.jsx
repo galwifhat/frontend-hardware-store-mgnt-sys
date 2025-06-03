@@ -11,7 +11,7 @@ const validationSchema = z.object({
   image_url: z.string().nonempty({ message: "Product Image is required" }),
   current_stock: z.coerce
     .number()
-    .min(0, { message: "Enter the current stock" }),
+    .min(1, { message: "Enter the current stock" }),
 });
 
 const AddProducts = () => {
@@ -71,17 +71,15 @@ const AddProducts = () => {
       >
         <div>
           <input
-            className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border${
+            className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border ${
               errors?.product_name?.message
                 ? "border border-red-500"
-                : "border-border-[#EAEFEF]"
+                : "border-[#EAEFEF]"
             } `}
             type="text"
             placeholder="Product name"
             {...register("product_name")}
           />
-
-          {/* conditional rendering */}
           {errors?.product_name?.message ? (
             <p className="text-xs text-red-500 mt-1">
               {errors.product_name.message}
@@ -91,10 +89,10 @@ const AddProducts = () => {
 
         <div>
           <input
-            className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border${
+            className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border ${
               errors?.sku?.message
                 ? "border border-red-500"
-                : "border-border-[#EAEFEF]"
+                : "border-[#EAEFEF]"
             } `}
             type="text"
             placeholder="SKU"
@@ -107,10 +105,10 @@ const AddProducts = () => {
         </div>
         <div>
           <input
-            className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border${
+            className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border ${
               errors?.image_url?.message
                 ? "border border-red-500"
-                : "border-border-[#EAEFEF]"
+                : "border-[#EAEFEF]"
             } `}
             type="text"
             placeholder="image_url"
@@ -126,10 +124,10 @@ const AddProducts = () => {
 
         <div>
           <select
-            className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border${
+            className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border ${
               errors?.brand_id?.message
                 ? "border border-red-500"
-                : "border-border-[#EAEFEF]"
+                : "border-[#EAEFEF]"
             } `}
             {...register("brand_id")}
           >
@@ -149,10 +147,10 @@ const AddProducts = () => {
 
         <div>
           <select
-            className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border${
+            className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border ${
               errors?.category_id?.message
                 ? "border border-red-500"
-                : "border-border-[#EAEFEF]"
+                : "border-[#EAEFEF]"
             } `}
             {...register("category_id")}
           >
@@ -172,10 +170,10 @@ const AddProducts = () => {
         </div>
         <div>
           <input
-            className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border${
+            className={`w-full p-2 rounded text-base text-gray-900 bg-[#EAEFEF] border ${
               errors?.current_stock?.message
                 ? "border border-red-500"
-                : "border-border-[#EAEFEF]"
+                : "border-[#EAEFEF]"
             } `}
             type="number"
             placeholder="Current Stock"
